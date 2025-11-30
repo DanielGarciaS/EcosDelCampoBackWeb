@@ -1,0 +1,5 @@
+# Proxy API requests to the backend (Placeholder)
+/api/*  https://TU-APP-EN-RENDER.onrender.com/api/:splat  200
+
+# SPA Fallback (Handle client-side routing)
+/*  /index.html  200
