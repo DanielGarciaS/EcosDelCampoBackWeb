@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10b981">
+  <title>Iniciar Sesión - EcosDelCampo</title>
+  
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../fondo.jpg">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <!-- Header -->
+      <div class="auth-header">
+        <h1>🌱 EcosDelCampo</h1>
+        <h2>Iniciar Sesión</h2>
+      </div>
+
+      <!-- Error Message -->
+      <div id="errorMessage" class="error-message"></div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            autocomplete="email"
+            placeholder="tu@email.com"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required 
+            autocomplete="current-password"
+            placeholder="••••••••"
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="loginBtn">
+          Entrar
+        </button>
+      </form>
+
+      <!-- Footer Links -->
+      <div class="auth-footer">
+        <p>¿No tienes cuenta? <a href="../pages/register.html">Regístrate aquí</a></p>
+        <p><a href="../index.html">← Volver al inicio</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/pages/auth.js"></script>
+</body>
+</html>

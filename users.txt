@@ -1,0 +1,24 @@
+BUYER:
+{
+  "message": "User registered",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDc1OWZkNjFjYjM5M2IyZjk4NmRkYiIsImVtYWlsIjoiYnV5ZXJAZG9zZS5hcHAiLCJyb2xlIjoiYnV5ZXIiLCJpYXQiOjE3NTg5NDM3NDEsImV4cCI6MTc1OTU0ODU0MX0.ZhzqGFJZzYS6ZN1l8oId1Qn0B3sMVosT1ZLC4qOso-w",
+  "user": {
+    "name": "Buyer Test",
+    "email": "buyer@dose.app",
+    "password": "$2b$10$upW8HhCTzx.TmRXwMUN.c.BXRlVqBB9hHsIAZt52sdCH4oF3SvOYm",
+    "role": "buyer",
+    "_id": "68d759fd61cb393b2f986ddb",
+    "__v": 0
+  }
+FARMER
+{
+  "message": "User registered",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZDc1YTUzNjFjYjM5M2IyZjk4NmRkZSIsImVtYWlsIjoiZmFybWVyQGRvc2UuYXBwIiwicm9sZSI6ImZhcm1lciIsImlhdCI6MTc1ODk0MzgyNywiZXhwIjoxNzU5NTQ4NjI3fQ.b8OEgjjdQ4WDA7KadVJhJ07MoTOPw9gCSN9frpNft_4",
+  "user": {
+    "name": "Farmer Test",
+    "email": "farmer@dose.app",
+    "password": "$2b$10$c69AvoXblkKEzZsSnDuzbOdmUGXsRj0xJG7sDvIvZ5pYFlihRShVm",
+    "role": "farmer",
+    "_id": "68d75a5361cb393b2f986dde",
+    "__v": 0
+  }

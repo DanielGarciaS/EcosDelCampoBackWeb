@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10b981">
+  <title>Sin Conexión - EcosDelCampo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #10b981, #059669);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .offline-container {
+      max-width: 500px;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .offline-icon {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: white;
+      color: #10b981;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: transform 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <div class="offline-icon">📡</div>
+    <h1>Sin Conexión a Internet</h1>
+    <p>
+      Parece que no tienes conexión en este momento. 
+      Esta página no está disponible offline, pero puedes acceder a otras 
+      secciones guardadas en caché.
+    </p>
+    <a href="/" class="btn">Volver al Inicio</a>
+    <p style="margin-top: 2rem; font-size: 0.9rem;">
+      La aplicación se reconectará automáticamente cuando tengas internet.
+    </p>
+  </div>
+
+  <script>
+    // Detectar cuando vuelve la conexión
+    window.addEventListener('online', () => {
+      location.reload();
+    });
+
+    // Mostrar estado de conexión
+    if (navigator.onLine) {
+      document.querySelector('.offline-container').innerHTML += 
+        '<p style="margin-top: 1rem; color: #fef3c7;">⚠️ Ya tienes conexión, recarga la página.</p>';
+    }
+  </script>
+</body>
+</html>

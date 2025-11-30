@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10b981">
+  <title>Registro - EcosDelCampo</title>
+  
+  <link rel="manifest" href="../manifest.json">
+  <link rel="icon" href="../fondo.jpg">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <!-- Header -->
+      <div class="auth-header">
+        <h1>🌱 EcosDelCampo</h1>
+        <h2>Crear Cuenta</h2>
+      </div>
+
+      <!-- Error Message -->
+      <div id="errorMessage" class="error-message"></div>
+
+      <!-- Register Form -->
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label for="name">Nombre Completo</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            required 
+            autocomplete="name"
+            placeholder="Juan Pérez"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            autocomplete="email"
+            placeholder="tu@email.com"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required 
+            autocomplete="new-password"
+            placeholder="Mínimo 6 caracteres"
+            minlength="6"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="role">Tipo de Cuenta</label>
+          <select id="role" name="role" required>
+            <option value="">Selecciona una opción</option>
+            <option value="farmer">Agricultor - Vender productos</option>
+            <option value="buyer">Comprador - Comprar productos</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="registerBtn">
+          Crear Cuenta
+        </button>
+      </form>
+
+      <!-- Footer Links -->
+      <div class="auth-footer">
+        <p>¿Ya tienes cuenta? <a href="../pages/login.html">Inicia sesión aquí</a></p>
+        <p><a href="../index.html">← Volver al inicio</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/pages/auth.js"></script>
+</body>
+</html>

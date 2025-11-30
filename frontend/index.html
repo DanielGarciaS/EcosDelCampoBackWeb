@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcosDelCampo - Del Campo a tu Mesa</title>
+    <meta name="description"
+        content="Conectando agricultores locales con compradores conscientes. Productos frescos, precios justos.">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2D5016">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/premium.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span>🌾</span> EcosDelCampo
+            </a>
+            <div class="nav-links">
+                <a href="/pages/login.html" class="btn btn-primary">Iniciar Sesión</a>
+                <a href="/pages/register.html" class="btn btn-primary">Registrarse</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Ecos Del Campo<br>Directo a tu Mesa</h1>
+            <p class="hero-subtitle">
+                La plataforma premium que conecta agricultores locales con compradores conscientes.
+                Sin intermediarios, garantizando frescura y comercio justo.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="/pages/register.html" class="btn btn-primary">Comenzar Ahora</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Agricultores</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5k+</span>
+                    <span class="stat-label">Compradores</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Orgánico</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="section-header">
+            <h2 class="section-title">Excelencia en Cada Cosecha</h2>
+            <p style="color: var(--text-secondary);">Descubre por qué somos la elección preferida</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h3>Frescura Garantizada</h3>
+                <p>Productos cosechados el mismo día de tu pedido. Del suelo a tu cocina en tiempo récord.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💎</div>
+                <h3>Precios Justos</h3>
+                <p>Eliminamos intermediarios innecesarios para asegurar que el agricultor gane más y tú pagues menos.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Comunidad Local</h3>
+                <p>Fortalece la economía de tu región apoyando directamente a los productores locales.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Únete a la Revolución Agrícola</h2>
+            <p>Sé parte del cambio hacia un consumo más consciente y sostenible.</p>
+            <a href="/pages/register.html" class="btn btn-white">Crear Cuenta Gratuita</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">🌾 EcosDelCampo</div>
+            <div class="copyright">
+                &copy; 2025 EcosDelCampo. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('✅ SW registrado con éxito'))
+                    .catch(err => console.error('❌ Error al registrar SW:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
