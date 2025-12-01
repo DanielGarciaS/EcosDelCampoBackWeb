@@ -39,19 +39,6 @@
     --shadow-glow: 0 0 15px rgba(45, 80, 22, 0.3);
     /* Resplandor verde */
 
-    --glass-bg: rgba(255, 255, 255, 0.75);
-    --glass-border: rgba(255, 255, 255, 0.5);
-    --glass-blur: blur(12px);
-
-    /* ===== TIPOGRAFÍA ===== */
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-serif: 'Playfair Display', serif;
-    /* Para títulos elegantes */
-}
-
-* {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
