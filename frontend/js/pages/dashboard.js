@@ -867,10 +867,8 @@ window.checkout = () => {
       }
 
       if (successCount === cart.length) {
-        // Check if any were saved offline
-        const wasOffline = !navigator.onLine || errors.length === 0 && successCount > 0 && cart.length > 0;
-
-        // If we are offline OR if we saved offline orders (which we count as success for UI)
+        // Check if we are offline OR if we saved offline orders
+        // If navigator.onLine is false, it's definitely offline.
         if (!navigator.onLine) {
           UI.showToast('📡 Modo Offline: Tu pedido se ha guardado y se enviará al recuperar la conexión.', 'info');
         } else {
@@ -884,7 +882,6 @@ window.checkout = () => {
         UI.showToast(`⚠️ Se procesaron ${successCount} de ${cart.length} productos.`, 'warning');
         if (errors.length > 0) {
           console.error('Checkout errors:', errors);
-          // Optional: Show detailed errors in a modal or separate toast
           setTimeout(() => UI.showToast('Hubo errores con algunos productos', 'error'), 500);
         }
         updateCartBadges();
@@ -894,7 +891,6 @@ window.checkout = () => {
   );
 };
 
-// ===== OFFLINE SYNC LOGIC =====
 // ===== OFFLINE SYNC LOGIC =====
 function saveOfflineOrder(orderData) {
   const offlineOrders = JSON.parse(localStorage.getItem('offline_orders')) || [];
@@ -946,7 +942,7 @@ async function syncOfflineOrders() {
   localStorage.setItem('offline_orders', JSON.stringify(remainingOrders));
 
   if (syncedCount > 0) {
-    UI.showToast(`🌐 Conexión recuperada: Se enviaron ${syncedCount} pedidos pendientes.`, 'info');
+    UI.showToast(`🌐 Ya se dio de alta tu compra (${syncedCount} pedidos).`, 'success');
     if (userRole === 'buyer') loadMyOrders();
     updateSidebarStats();
   }
