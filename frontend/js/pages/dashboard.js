@@ -281,12 +281,12 @@ function loadCartPage() {
   }).join('');
 
   dom.content.innerHTML = `
-        <div class="cart-page-container" style="max-width: 800px; margin: 0 auto;">
+        <div class="cart-page-container">
             <div class="cart-items-list">
                 ${cartItemsHtml}
             </div>
-            <div class="cart-summary" style="margin-top: 2rem; padding: 1.5rem; background: white; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-size: 1.5rem; font-weight: 700; color: var(--primary-dark);">
+            <div class="cart-summary">
+                <div class="cart-total-row">
                     <span>Total:</span>
                     <span id="cartPageTotal">$${total.toFixed(2)}</span>
                 </div>
@@ -867,8 +867,12 @@ window.checkout = () => {
       }
 
       if (successCount === cart.length) {
+        // Check if any were saved offline
+        const wasOffline = !navigator.onLine || errors.length === 0 && successCount > 0 && cart.length > 0;
+
+        // If we are offline OR if we saved offline orders (which we count as success for UI)
         if (!navigator.onLine) {
-          UI.showToast('📡 Estás desconectado. Tu pedido se guardó localmente.', 'info');
+          UI.showToast('📡 Modo Offline: Tu pedido se ha guardado y se enviará al recuperar la conexión.', 'info');
         } else {
           UI.showToast('✅ ¡Compra realizada con éxito!', 'success');
         }
