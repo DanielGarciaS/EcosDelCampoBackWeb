@@ -1,5 +1,6 @@
 // ===== LÓGICA DE AUTENTICACIÓN =====
 import AuthAPI from '../api/auth.js';
+import UI from '../utils/ui.js';
 
 const errorMessage = document.getElementById('errorMessage');
 
@@ -118,8 +119,10 @@ if (registerForm) {
 
       if (result.success) {
         // Registro exitoso → redirigir al dashboard
-        alert('✅ Cuenta creada exitosamente');
-        window.location.href = '/pages/dashboard.html';
+        UI.showToast('✅ Cuenta creada exitosamente', 'success');
+        setTimeout(() => {
+          window.location.href = '/pages/dashboard.html';
+        }, 1500);
       } else {
         // Mostrar error
         showError(result.error || 'Error desconocido');

@@ -807,63 +807,73 @@ function updateCartBadges() {
   }
 }
 
-window.checkout = async () => {
+window.checkout = () => {
   if (cart.length === 0) return;
 
   const totalText = document.getElementById('cartPageTotal').textContent;
-  if (!confirm(`¿Confirmar compra por ${totalText}?`)) return;
 
-  const checkoutBtn = document.getElementById('checkoutBtn');
-  checkoutBtn.textContent = 'Procesando...';
-  checkoutBtn.disabled = true;
-
-  let successCount = 0;
-  let errors = [];
-
-  // Process orders sequentially
-  for (const item of cart) {
-    const orderData = {
-      productId: item._id,
-      quantity: item.quantity,
-      price: item.price,
-      farmerId: item.farmer._id
-    };
-
-    try {
-      const result = await OrdersAPI.create(orderData);
-      if (result.success) {
-        successCount++;
-      } else {
-        errors.push(`${item.name}: ${result.error}`);
+  UI.showConfirmModal(
+    'Confirmar Compra',
+    `¿Confirmar compra por ${totalText}?`,
+    async () => {
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      if (checkoutBtn) {
+        checkoutBtn.textContent = 'Procesando...';
+        checkoutBtn.disabled = true;
       }
-    } catch (error) {
-      if (!navigator.onLine || error.message === 'Offline') {
-        saveOfflineOrder(orderData);
-        successCount++; // Treat as success for UI flow
-        console.log('🌐 Offline: Order queued');
+
+      let successCount = 0;
+      let errors = [];
+
+      // Process orders sequentially
+      for (const item of cart) {
+        const orderData = {
+          productId: item._id,
+          quantity: item.quantity,
+          price: item.price,
+          farmerId: item.farmer._id
+        };
+
+        try {
+          const result = await OrdersAPI.create(orderData);
+          if (result.success) {
+            successCount++;
+          } else {
+            errors.push(`${item.name}: ${result.error}`);
+          }
+        } catch (error) {
+          if (!navigator.onLine || error.message === 'Offline') {
+            saveOfflineOrder(orderData);
+            successCount++; // Treat as success for UI flow
+            console.log('🌐 Offline: Order queued');
+          } else {
+            errors.push(`${item.name}: Error de conexión`);
+          }
+        }
+      }
+
+      if (successCount === cart.length) {
+        if (!navigator.onLine) {
+          UI.showToast('📡 Estás desconectado. Tu pedido se guardó localmente.', 'info');
+        } else {
+          UI.showToast('✅ ¡Compra realizada con éxito!', 'success');
+        }
+        cart = [];
+        saveCart();
+        updateCartBadges();
+        switchTab('orders');
       } else {
-        errors.push(`${item.name}: Error de conexión`);
+        UI.showToast(`⚠️ Se procesaron ${successCount} de ${cart.length} productos.`, 'warning');
+        if (errors.length > 0) {
+          console.error('Checkout errors:', errors);
+          // Optional: Show detailed errors in a modal or separate toast
+          setTimeout(() => UI.showToast('Hubo errores con algunos productos', 'error'), 500);
+        }
+        updateCartBadges();
+        loadCartPage();
       }
     }
-  }
-
-  if (successCount === cart.length) {
-    if (!navigator.onLine) {
-      alert('📡 Estás desconectado. Tu pedido se ha guardado y se enviará automáticamente cuando recuperes la conexión.');
-    } else {
-      alert('✅ ¡Compra realizada con éxito!');
-    }
-    cart = [];
-    saveCart();
-    updateCartBadges();
-    switchTab('orders');
-  } else {
-    alert(`⚠️ Se procesaron ${successCount} de ${cart.length} productos.\nErrores: \n${errors.join('\n')} `);
-    // Remove successful items from cart
-    // (Optional: implement logic to keep failed items)
-    updateCartBadges();
-    loadCartPage();
-  }
+  );
 };
 
 // ===== OFFLINE SYNC LOGIC =====
@@ -918,7 +928,7 @@ async function syncOfflineOrders() {
   localStorage.setItem('offline_orders', JSON.stringify(remainingOrders));
 
   if (syncedCount > 0) {
-    alert(`🌐 Conexión recuperada: Se enviaron ${syncedCount} pedidos pendientes.`);
+    UI.showToast(`🌐 Conexión recuperada: Se enviaron ${syncedCount} pedidos pendientes.`, 'info');
     if (userRole === 'buyer') loadMyOrders();
     updateSidebarStats();
   }
@@ -954,7 +964,7 @@ async function syncOfflineProducts() {
   localStorage.setItem('offline_products', JSON.stringify(remainingProducts));
 
   if (syncedCount > 0) {
-    alert(`🌐 Conexión recuperada: Se publicaron ${syncedCount} productos pendientes.`);
+    UI.showToast(`🌐 Conexión recuperada: Se publicaron ${syncedCount} productos pendientes.`, 'info');
     if (userRole === 'farmer') loadMyProducts();
     updateFarmerStats();
   }
