@@ -99,12 +99,73 @@
     <section class="cta">
         <div class="cta-content">
             <h2>Únete a la Revolución Agrícola</h2>
-            navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('✅ SW registrado con éxito'))
-            .catch(err => console.error('❌ Error al registrar SW:', err));
+            <p>Sé parte del cambio hacia un consumo más consciente y sostenible.</p>
+            <a href="/pages/register.html" class="btn btn-white">Crear Cuenta Gratuita</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>🌾 EcosDelCampo</h3>
+                <p style="color: #9ca3af; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Conectando la tierra con tu mesa. La plataforma líder en comercio justo y productos orgánicos
+                    locales.
+                </p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#" style="color: white; font-size: 1.2rem;">📱</a>
+                    <a href="#" style="color: white; font-size: 1.2rem;">📸</a>
+                    <a href="#" style="color: white; font-size: 1.2rem;">🐦</a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Plataforma</h4>
+                <ul>
+                    <li><a href="#">Explorar Mercado</a></li>
+                    <li><a href="#">Nuestros Agricultores</a></li>
+                    <li><a href="#">Cómo Funciona</a></li>
+                    <li><a href="#">Precios</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Compañía</h4>
+                <ul>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Misión y Visión</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Carreras</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos de Uso</a></li>
+                    <li><a href="#">Privacidad</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 EcosDelCampo. Todos los derechos reservados. | Hecho con 💚 por el equipo de Ecos.</p>
+        </div>
+    </footer>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('✅ SW registrado con éxito'))
+                    .catch(err => console.error('❌ Error al registrar SW:', err));
             });
-            }
-            </script>
+        }
+    </script>
 </body>
 
 </html>
