@@ -500,6 +500,29 @@ body {
     color: var(--text-primary);
 }
 
+/* Modal Overrides for Dark Theme */
+.custom-confirm-modal .modal-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.custom-confirm-modal .modal-title {
+    color: var(--text-primary);
+}
+
+.custom-confirm-modal .close-modal {
+    color: var(--text-secondary);
+}
+
+.custom-confirm-modal .close-modal:hover {
+    color: var(--text-primary);
+}
+
+.custom-confirm-modal p {
+    color: var(--text-secondary);
+}
+
 /* Animations */
 @keyframes fadeIn {
     from {
