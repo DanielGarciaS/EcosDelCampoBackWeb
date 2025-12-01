@@ -5,7 +5,7 @@
             "destination": "https://ecosdelcampobackweb.onrender.com/api/:match*"
         },
         {
-            "source": "/((?!.*\\.(?:css|js|png|jpg|jpeg|gif|svg|ico|json|woff|woff2|ttf|eot)).*)",
+            "source": "/((?!.*\\.(?:html|css|js|png|jpg|jpeg|gif|svg|ico|json|woff|woff2|ttf|eot)).*)",
             "destination": "/index.html"
         }
     ]
