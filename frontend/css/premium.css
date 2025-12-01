@@ -725,7 +725,7 @@ h6 {
     margin: 0 auto;
 }
 
-.cta-title {
+.cta h2 {
     font-size: 3rem;
     color: white;
     margin-bottom: 1.5rem;
@@ -747,6 +747,7 @@ h6 {
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: inline-block;
 }
 
 .btn-white:hover {
