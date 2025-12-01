@@ -184,7 +184,7 @@ h6 {
     font-size: 0.85rem;
 }
 
-/* ===== HERO SECTION ===== */
+/* ===== HERO SECTION (DARK THEME) ===== */
 .hero {
     position: relative;
     min-height: 90vh;
@@ -192,7 +192,8 @@ h6 {
     align-items: center;
     justify-content: center;
     padding-top: 80px;
-    background: radial-gradient(circle at top right, #f1f8e9 0%, #ffffff 60%);
+    background: radial-gradient(circle at center, #1a3505 0%, #051101 100%);
+    /* Fondo oscuro profundo */
     overflow: hidden;
 }
 
@@ -203,7 +204,7 @@ h6 {
     right: -10%;
     width: 60vw;
     height: 60vw;
-    background: radial-gradient(circle, rgba(83, 141, 34, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
+    background: radial-gradient(circle, rgba(83, 141, 34, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
     border-radius: 50%;
     z-index: 0;
     pointer-events: none;
@@ -215,26 +216,32 @@ h6 {
     text-align: center;
     max-width: 900px;
     padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-title {
     font-size: 4.5rem;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    background: linear-gradient(to right, var(--primary-dark), var(--primary-light));
+    background: linear-gradient(to right, #ffffff, #E7F3D4);
+    /* Blanco a verde muy suave */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -1px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
     font-size: 1.35rem;
-    color: var(--text-muted);
+    color: #d1d5db;
+    /* Gris claro */
     margin-bottom: 3rem;
     max-width: 650px;
     padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-stats {
@@ -242,7 +249,10 @@ h6 {
     gap: 4rem;
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    /* Centrado */
+    width: 100%;
 }
 
 .stat-item {
@@ -254,14 +264,17 @@ h6 {
 .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--primary-main);
+    color: var(--accent-gold);
+    /* Dorado para resaltar */
     font-family: var(--font-serif);
     line-height: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .stat-label {
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: #9ca3af;
+    /* Gris medio-claro */
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-top: 0.5rem;
@@ -270,8 +283,10 @@ h6 {
 .avatar-circle {
     width: 80px;
     height: 80px;
-    background: var(--primary-soft);
-    color: var(--primary-dark);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -681,10 +696,11 @@ h6 {
     line-height: 1.7;
 }
 
-/* ===== CTA SECTION ===== */
+/* ===== CTA SECTION (DARK THEME) ===== */
 .cta {
     padding: 6rem 2rem;
-    background: var(--primary-dark);
+    background: #0a1f0a;
+    /* Dark green/black */
     color: white;
     text-align: center;
     position: relative;
@@ -698,7 +714,7 @@ h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(83, 141, 34, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+    background: radial-gradient(circle at center, rgba(83, 141, 34, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
     pointer-events: none;
 }
 
@@ -713,19 +729,39 @@ h6 {
     font-size: 3rem;
     color: white;
     margin-bottom: 1.5rem;
+    font-family: var(--font-serif);
 }
 
 .cta-text {
-    color: rgba(255, 255, 255, 0.8);
+    color: #d1d5db;
     font-size: 1.2rem;
     margin-bottom: 3rem;
 }
 
-/* ===== FOOTER ===== */
+.btn-white {
+    background: white;
+    color: var(--primary-dark);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background: #f3f4f6;
+}
+
+/* ===== FOOTER (DARK THEME) ===== */
 .footer {
-    background: #0F2901;
+    background: #051101;
+    /* Very dark */
     color: white;
     padding: 4rem 2rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .footer-content {
