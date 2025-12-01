@@ -92,37 +92,25 @@ function init() {
   setupEventListeners();
 }
 
+
 async function updateSidebarStats() {
   if (userRole === 'farmer') return;
 
   const result = await OrdersAPI.getMy();
   if (result.success) {
     const orders = result.data;
-    console.log('📊 Orders for Stats:', orders);
-
     const activeCount = orders.filter(o => o.status === 'pending' || o.status === 'accepted').length;
     document.getElementById('sidebarActiveOrders').textContent = activeCount;
 
-    const now = new Date();
-    const currentMonth = now.getMonth();
-    const currentYear = now.getFullYear();
-    console.log(`📅 Current Date: ${currentMonth + 1}/${currentYear}`);
-
-    const monthSpent = orders.reduce((total, order) => {
-      const orderDate = new Date(order.createdAt);
-      const isSameMonth = orderDate.getMonth() === currentMonth && orderDate.getFullYear() === currentYear;
-      const isNotCancelled = order.status !== 'cancelled';
-
-      console.log(`📦 Order ${order._id}: Status=${order.status}, Date=${orderDate.toLocaleDateString()}, Amount=${order.price * order.quantity}, Counted=${isSameMonth && isNotCancelled}`);
-
-      if (isNotCancelled && isSameMonth) {
+    // Calculate Total Spent (All Time)
+    const totalSpent = orders.reduce((total, order) => {
+      if (order.status !== 'cancelled') {
         return total + (order.price * order.quantity);
       }
       return total;
     }, 0);
 
-    console.log('💰 Total Month Spent:', monthSpent);
-    document.getElementById('sidebarMonthSpent').textContent = `$${monthSpent.toFixed(2)}`;
+    document.getElementById('sidebarMonthSpent').textContent = `$${totalSpent.toFixed(2)}`;
   }
 }
 
