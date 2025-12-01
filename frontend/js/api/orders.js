@@ -100,6 +100,29 @@ const OrdersAPI = {
       console.error('Error en updateStatus:', error);
       return { success: false, error: 'Error de conexión' };
     }
+  },
+
+  async cancel(orderId) {
+    try {
+      const endpoint = CONFIG.ENDPOINTS.ORDERS_UPDATE_STATUS.replace(':id', orderId); // Usamos la misma estructura de URL base pero con DELETE si es RESTful, o ajustamos según config.
+      // Nota: CONFIG.ENDPOINTS.ORDERS_UPDATE_STATUS suele ser /api/orders/:id.
+      // Si el backend espera DELETE /api/orders/:id, podemos reusar la base.
+
+      const response = await apiFetch(endpoint, {
+        method: 'DELETE'
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        return { success: true, data: data.message };
+      } else {
+        return { success: false, error: data.message || 'Error al cancelar pedido' };
+      }
+    } catch (error) {
+      console.error('Error en cancel:', error);
+      return { success: false, error: 'Error de conexión' };
+    }
   }
 };
 

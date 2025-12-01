@@ -738,6 +738,23 @@ window.updateOrderStatus = async (orderId, newStatus) => {
   }
 };
 
+window.cancelOrder = (orderId) => {
+  UI.showConfirmModal(
+    'Cancelar Pedido',
+    '¿Estás seguro de que quieres cancelar este pedido? Esta acción no se puede deshacer.',
+    async () => {
+      const result = await OrdersAPI.cancel(orderId);
+      if (result.success) {
+        UI.showToast('✅ Pedido cancelado correctamente', 'success');
+        loadMyOrders(); // Recargar lista
+        updateSidebarStats(); // Actualizar stats
+      } else {
+        UI.showToast('❌ Error al cancelar: ' + result.error, 'error');
+      }
+    }
+  );
+};
+
 function renderEmptyState(message) {
   dom.content.innerHTML = `
     <div style="text-align: center; padding: 4rem; color: var(--text-secondary);" class="fade-in">
