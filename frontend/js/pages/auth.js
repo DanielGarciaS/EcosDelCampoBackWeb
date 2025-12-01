@@ -18,6 +18,87 @@ function hideError() {
   }
 }
 
+// ===== SEGURIDAD UI (Toggle Password & Strength Meter) =====
+function setupSecurityUI() {
+  const passwordInputs = document.querySelectorAll('input[type="password"]');
+
+  passwordInputs.forEach(input => {
+    // 1. Toggle Visibility
+    const wrapper = document.createElement('div');
+    wrapper.className = 'password-wrapper';
+    input.parentNode.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.type = 'button';
+    toggleBtn.className = 'password-toggle';
+    toggleBtn.innerHTML = '👁️';
+    toggleBtn.onclick = () => {
+      const type = input.type === 'password' ? 'text' : 'password';
+      input.type = type;
+      toggleBtn.innerHTML = type === 'password' ? '👁️' : '🔒';
+    };
+    wrapper.appendChild(toggleBtn);
+
+    // 2. Strength Meter (Solo para Registro)
+    if (input.id === 'password' && document.getElementById('registerForm')) {
+      const meter = document.createElement('div');
+      meter.className = 'password-strength';
+      meter.innerHTML = `
+        <div class="strength-bar"><div class="strength-fill"></div></div>
+        <p class="strength-text">Seguridad: Baja</p>
+        <ul class="strength-requirements">
+          <li id="req-length">Mínimo 8 caracteres</li>
+          <li id="req-upper">Una mayúscula</li>
+          <li id="req-lower">Una minúscula</li>
+          <li id="req-number">Un número</li>
+          <li id="req-symbol">Un símbolo</li>
+        </ul>
+      `;
+      input.parentNode.appendChild(meter);
+
+      input.addEventListener('input', () => {
+        const val = input.value;
+        const reqs = {
+          length: val.length >= 8,
+          upper: /[A-Z]/.test(val),
+          lower: /[a-z]/.test(val),
+          number: /[0-9]/.test(val),
+          symbol: /[\W]/.test(val)
+        };
+
+        // Actualizar lista
+        document.getElementById('req-length').className = reqs.length ? 'valid' : '';
+        document.getElementById('req-upper').className = reqs.upper ? 'valid' : '';
+        document.getElementById('req-lower').className = reqs.lower ? 'valid' : '';
+        document.getElementById('req-number').className = reqs.number ? 'valid' : '';
+        document.getElementById('req-symbol').className = reqs.symbol ? 'valid' : '';
+
+        // Calcular Score
+        const score = Object.values(reqs).filter(Boolean).length;
+        const fill = meter.querySelector('.strength-fill');
+        const text = meter.querySelector('.strength-text');
+
+        fill.style.width = `${(score / 5) * 100}%`;
+
+        if (score <= 2) {
+          fill.style.backgroundColor = '#EF4444'; // Rojo
+          text.textContent = 'Seguridad: Débil';
+        } else if (score <= 4) {
+          fill.style.backgroundColor = '#F59E0B'; // Amarillo
+          text.textContent = 'Seguridad: Media';
+        } else {
+          fill.style.backgroundColor = '#10B981'; // Verde
+          text.textContent = 'Seguridad: Fuerte';
+        }
+      });
+    }
+  });
+}
+
+// Inicializar UI de seguridad al cargar
+document.addEventListener('DOMContentLoaded', setupSecurityUI);
+
 // ===== LOGIN =====
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
@@ -82,35 +163,35 @@ if (registerForm) {
     e.preventDefault();
     hideError();
 
-    // Deshabilitar botón
-    if (registerBtn) {
-      registerBtn.disabled = true;
-      registerBtn.textContent = 'Creando cuenta...';
-    }
-
     // Obtener datos del formulario
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
     const role = document.getElementById('role').value;
 
-    // Validación básica
+    // Validación Frontend Estricta
     if (!name || !email || !password || !role) {
       showError('Por favor completa todos los campos');
-      if (registerBtn) {
-        registerBtn.disabled = false;
-        registerBtn.textContent = 'Crear Cuenta';
-      }
       return;
     }
 
-    if (password.length < 6) {
-      showError('La contraseña debe tener al menos 6 caracteres');
-      if (registerBtn) {
-        registerBtn.disabled = false;
-        registerBtn.textContent = 'Crear Cuenta';
-      }
+    // Validar requisitos de password
+    const strongPassword =
+      password.length >= 8 &&
+      /[A-Z]/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[0-9]/.test(password) &&
+      /[\W]/.test(password);
+
+    if (!strongPassword) {
+      showError('La contraseña no cumple con los requisitos de seguridad.');
       return;
+    }
+
+    // Deshabilitar botón
+    if (registerBtn) {
+      registerBtn.disabled = true;
+      registerBtn.textContent = 'Creando cuenta...';
     }
 
     // Llamar API

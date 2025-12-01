@@ -1,18 +1,5 @@
 // ===== CARGAR .ENV PRIMERO (ANTES DE TODO) =====
 const dotenv = require('dotenv');
-dotenv.config(); // ← Debe ser LA PRIMERA LÍNEA ejecutable
-
-// ===== AHORA SÍ IMPORTAR EL RESTO =====
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const mongoose = require('mongoose');
-const path = require('path');
-
-const authRoutes = require('./routes/auth');
-const refreshRoutes = require('./routes/refresh');
-const userRoutes = require('./routes/user');
-const orderRoutes = require('./routes/order');
 const productRoutes = require('./routes/product');
 
 const app = express();
