@@ -1,8 +1,6 @@
 // ===== LÓGICA DE AUTENTICACIÓN =====
 import AuthAPI from '../api/auth.js';
 
-console.log('🔐 Auth script loaded');
-
 const errorMessage = document.getElementById('errorMessage');
 
 function showError(message) {
@@ -22,12 +20,10 @@ function hideError() {
 // ===== LOGIN =====
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
-  console.log('✅ Login form detected');
   const loginBtn = document.getElementById('loginBtn');
 
   loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log('🚀 Login submit intercepted');
     hideError();
 
     // Deshabilitar botón
@@ -52,13 +48,10 @@ if (loginForm) {
 
     // Llamar API
     try {
-      console.log('📡 Calling AuthAPI.login...');
       const result = await AuthAPI.login({ email, password });
-      console.log('Auth result:', result);
 
       if (result.success) {
         // Login exitoso → redirigir al dashboard
-        console.log('Redirecting to dashboard...');
         window.location.href = '/pages/dashboard.html';
       } else {
         // Mostrar error
@@ -82,12 +75,10 @@ if (loginForm) {
 // ===== REGISTRO =====
 const registerForm = document.getElementById('registerForm');
 if (registerForm) {
-  console.log('✅ Register form detected');
   const registerBtn = document.getElementById('registerBtn');
 
   registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    console.log('🚀 Register submit intercepted');
     hideError();
 
     // Deshabilitar botón
@@ -123,9 +114,7 @@ if (registerForm) {
 
     // Llamar API
     try {
-      console.log('📡 Calling AuthAPI.register...');
       const result = await AuthAPI.register({ name, email, password, role });
-      console.log('Register result:', result);
 
       if (result.success) {
         // Registro exitoso → redirigir al dashboard
