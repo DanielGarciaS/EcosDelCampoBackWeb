@@ -2,6 +2,7 @@
 import AuthAPI from '../api/auth.js';
 import ProductsAPI from '../api/products.js';
 import OrdersAPI from '../api/orders.js';
+import UI from '../utils/ui.js';
 
 // ===== PROTEGER PÁGINA =====
 if (!AuthAPI.isAuthenticated()) {
@@ -163,7 +164,11 @@ async function updateFarmerStats() {
 
 function setupEventListeners() {
   const handleLogout = () => {
-    if (confirm('¿Seguro que quieres cerrar sesión?')) AuthAPI.logout();
+    UI.showConfirmModal(
+      'Cerrar Sesión',
+      '¿Estás seguro de que quieres salir?',
+      () => AuthAPI.logout()
+    );
   };
   dom.logoutBtn.addEventListener('click', handleLogout);
   dom.mobileLogout.addEventListener('click', handleLogout);
@@ -193,7 +198,7 @@ window.switchTab = function (tab) {
   const activeMobile = document.querySelector(`.mobile-nav-item[data-tab="${tab}"]`);
   if (activeMobile) activeMobile.classList.add('active');
 
-  dom.content.innerHTML = '<div class="loading-spinner">Cargando...</div>';
+  dom.content.innerHTML = UI.getSpinner();
 
   switch (tab) {
     case 'marketplace':
@@ -422,7 +427,7 @@ function loadPublishTab() {
 
 function handleImageSelect(file, previewElement, placeholderElement) {
   if (!file.type.startsWith('image/')) {
-    alert('Por favor selecciona una imagen válida');
+    UI.showToast('Por favor selecciona una imagen válida', 'error');
     return;
   }
 
@@ -456,21 +461,21 @@ async function handlePublishSubmit(e) {
     const result = await ProductsAPI.create(productData);
 
     if (result.success) {
-      alert('✅ ¡Producto publicado con éxito!');
+      UI.showToast('✅ ¡Producto publicado con éxito!', 'success');
       updateFarmerStats();
       switchTab('products'); // Redirect to products list
     } else {
-      alert('❌ Error: ' + result.error);
+      UI.showToast('❌ Error: ' + result.error, 'error');
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     }
   } catch (error) {
     if (!navigator.onLine || error.message === 'Offline') {
       saveOfflineProduct(productData);
-      alert('📡 Estás desconectado. Tu producto se ha guardado y se publicará automáticamente cuando recuperes la conexión.');
+      UI.showToast('📡 Estás desconectado. Tu producto se guardó localmente.', 'info');
       switchTab('products');
     } else {
-      alert('❌ Error de conexión');
+      UI.showToast('❌ Error de conexión', 'error');
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     }
@@ -729,13 +734,13 @@ window.updateOrderStatus = async (orderId, newStatus) => {
     updateSidebarStats();
     updateFarmerStats();
   } else {
-    alert('Error al actualizar estado: ' + result.error);
+    UI.showToast('Error al actualizar estado: ' + result.error, 'error');
   }
 };
 
 function renderEmptyState(message) {
   dom.content.innerHTML = `
-    <div style="text-align: center; padding: 4rem; color: var(--text-secondary);">
+    <div style="text-align: center; padding: 4rem; color: var(--text-secondary);" class="fade-in">
       <div style="font-size: 3rem; margin-bottom: 1rem;">🍃</div>
       <p>${message}</p>
     </div>
@@ -760,14 +765,7 @@ window.addToCart = (product) => {
   updateCartBadges();
 
   // Show feedback
-  const btn = event.target;
-  const originalText = btn.innerHTML;
-  btn.innerHTML = '✅ Agregado';
-  btn.classList.add('btn-success');
-  setTimeout(() => {
-    btn.innerHTML = originalText;
-    btn.classList.remove('btn-success');
-  }, 1000);
+  UI.showToast(`✅ ${product.name} agregado al carrito`, 'success');
 };
 
 window.removeFromCart = (productId) => {
