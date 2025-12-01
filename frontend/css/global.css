@@ -6,17 +6,33 @@
 }
 
 :root {
-  --primary: #10b981;
-  --primary-dark: #059669;
+  /* ===== PALETA PREMIUM (Naturaleza Profunda) ===== */
+  --primary: #2D5016;
+  /* Verde hoja clásico */
+  --primary-dark: #143601;
+  /* Verde bosque profundo */
+  --primary-light: #538D22;
+  /* Verde vibrante */
+  --primary-soft: #E7F3D4;
+  /* Verde muy suave */
+
+  --accent-gold: #C5A028;
+  /* Dorado elegante */
+
   --secondary: #3b82f6;
   --danger: #ef4444;
-  --dark: #1e293b;
-  --gray: #64748b;
-  --light-gray: #f1f5f9;
+  --dark: #1F2937;
+  /* Gris muy oscuro */
+  --gray: #6B7280;
+  /* Gris medio */
+  --light-gray: #F3F4F6;
+  /* Gris muy claro */
   --white: #ffffff;
+
   --border: #e2e8f0;
   --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 15px rgba(45, 80, 22, 0.3);
 }
 
 body {
