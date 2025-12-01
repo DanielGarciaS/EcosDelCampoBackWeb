@@ -39,6 +39,22 @@
     --shadow-glow: 0 0 15px rgba(45, 80, 22, 0.3);
     /* Resplandor verde */
 
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-blur: blur(12px);
+
+    /* ===== TIPOGRAFÍA ===== */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Playfair Display', serif;
+    /* Para títulos elegantes */
+
+    color-scheme: light;
+    /* ✅ Forzar modo claro */
+}
+
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -219,6 +235,36 @@ h6 {
     max-width: 650px;
     padding-bottom: 2rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 4rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-main);
+    font-family: var(--font-serif);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0.5rem;
 }
 
 .avatar-circle {
