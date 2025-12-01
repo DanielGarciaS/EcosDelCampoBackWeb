@@ -126,9 +126,9 @@ async function updateFarmerStats() {
     if (ordersResult.success) {
       const orders = ordersResult.data;
 
-      // Total Sales (Delivered orders)
+      // Total Sales (All non-cancelled orders)
       const totalSales = orders
-        .filter(o => o.status === 'delivered')
+        .filter(o => o.status !== 'cancelled')
         .reduce((sum, o) => sum + (o.price * o.quantity), 0);
 
       // Active Orders (Not delivered, not cancelled)
