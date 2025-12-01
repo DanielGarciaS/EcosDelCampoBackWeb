@@ -38,9 +38,11 @@ const dom = {
 
 // ===== INICIALIZAR =====
 function init() {
-  dom.userName.textContent = user.name;
-  dom.userRole.textContent = userRole === 'farmer' ? 'Agricultor' : 'Comprador';
-  dom.userAvatar.textContent = user.name.charAt(0).toUpperCase();
+  console.log('🚀 Dashboard JS v5 Loaded');
+
+  if (dom.userName) dom.userName.textContent = user.name;
+  if (dom.userRole) dom.userRole.textContent = userRole === 'farmer' ? 'Agricultor' : 'Comprador';
+  if (dom.userAvatar) dom.userAvatar.textContent = user.name.charAt(0).toUpperCase();
 
   if (userRole === 'farmer') {
     // Hide buyer tabs

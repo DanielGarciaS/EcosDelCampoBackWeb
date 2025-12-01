@@ -1,36 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
 
-</div>
-</div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D5016">
+  <title>Dashboard - EcosDelCampo</title>
 
-<div class="sidebar-content">
-  <!-- Buyer Stats -->
-  <div class="sidebar-widget" id="buyerStatsWidget">
-    <h5 class="widget-title">📊 Tu Resumen</h5>
-    <div class="stat-row">
-      <span class="stat-label">Pedidos Activos</span>
-      <span class="stat-value" id="sidebarActiveOrders">0</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Gastos del Mes</span>
-      <span class="stat-value" id="sidebarMonthSpent">$0.00</span>
-    </div>
-  </div>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/icon-192x192.png">
 
-  <!-- Farmer Stats -->
-  <div class="sidebar-widget" id="farmerStatsWidget" style="display: none;">
-    <h5 class="widget-title">🚜 Tu Negocio</h5>
-    <div class="stat-row">
-      <span class="stat-label">Ventas Totales</span>
-      <span class="stat-value" id="statTotalSales">$0.00</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Pedidos Activos</span>
-      <button class="btn btn-secondary btn-block" id="logoutBtn" style="width: 100%; justify-content: center;">
-        Cerrar Sesión
-      </button>
-    </div>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles (Relative Paths for Robustness) -->
+  <link rel="stylesheet" href="../css/premium.css?v=5">
+  <link rel="stylesheet" href="../css/dashboard-premium.css?v=5">
+</head>
+
+<body>
+  <div id="app" class="dashboard-layout">
+    <!-- Sidebar (Desktop) -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span>🌾</span> EcosDelCampo
+        </div>
+      </div>
+
+      <div class="sidebar-content">
+        <!-- Buyer Stats -->
+        <div class="sidebar-widget" id="buyerStatsWidget">
+          <h5 class="widget-title">📊 Tu Resumen</h5>
+          <div class="stat-row">
+            <span class="stat-label">Pedidos Activos</span>
+            <span class="stat-value" id="sidebarActiveOrders">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Gastos del Mes</span>
+            <span class="stat-value" id="sidebarMonthSpent">$0.00</span>
+          </div>
+        </div>
+
+        <!-- Farmer Stats -->
+        <div class="sidebar-widget" id="farmerStatsWidget" style="display: none;">
+          <h5 class="widget-title">🚜 Tu Negocio</h5>
+          <div class="stat-row">
+            <span class="stat-label">Ventas Totales</span>
+            <span class="stat-value" id="statTotalSales">$0.00</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Pedidos Activos</span>
+            <span class="stat-value" id="statActiveOrders">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Clientes</span>
+            <span class="stat-value" id="statTotalClients">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Productos</span>
+            <span class="stat-value" id="statTotalProducts">0</span>
+          </div>
+        </div>
+
+        <div class="sidebar-widget highlight-widget">
+          <h5 class="widget-title">💡 Tip Ecos</h5>
+          <p class="widget-text">Consume frutas de temporada para apoyar a los agricultores locales y reducir la huella
+            de carbono.</p>
+          <div class="widget-icon">🌱</div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar" id="userAvatar">U</div>
+          <div class="user-info">
+            <h4 id="userName">Usuario</h4>
+            <span id="userRole">Rol</span>
+          </div>
+        </div>
+        <button class="btn btn-secondary btn-block" id="logoutBtn" style="width: 100%; justify-content: center;">
+          Cerrar Sesión
+        </button>
+      </div>
     </aside>
 
     <!-- Main Content -->
@@ -97,6 +153,6 @@
   </div>
 
   <script type="module" src="../js/pages/dashboard.js"></script>
-  </body>
+</body>
 
 </html>
