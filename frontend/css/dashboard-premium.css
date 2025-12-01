@@ -1,13 +1,4 @@
-﻿    /* Even more subtle top glow */
-    overflow-x: hidden;
-    color: var(--text-primary);
-    }
-
-    /* Layout Structure */
-    .dashboard-layout {
-        display: flex;
-        min-height: 100vh;
-    }
+﻿    }
 
     /* Sidebar */
     .sidebar {
