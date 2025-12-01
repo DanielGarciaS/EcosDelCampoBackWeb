@@ -28,99 +28,86 @@
     <div class="stat-row">
       <span class="stat-label">Pedidos Activos</span>
       <span class="stat-value" id="statActiveOrders">0</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Clientes</span>
-      <span class="stat-value" id="statTotalClients">0</span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Productos</span>
-      <span class="stat-value" id="statTotalProducts">0</span>
-    </div>
-  </div>
-
-  <div class="sidebar-widget highlight-widget">
-    <h5 class="widget-title">💡 Tip Ecos</h5>
-    <p class="widget-text">Consume frutas de temporada para apoyar a los agricultores locales y reducir la huella
       de carbono.</p>
-    <div class="widget-icon">🌱</div>
-  </div>
-</div>
-
-<div class="sidebar-footer">
-  <div class="user-profile">
-    <div class="user-avatar" id="userAvatar">U</div>
-    <div class="user-info">
-      <h4 id="userName">Usuario</h4>
-      <span id="userRole">Rol</span>
+      <div class="widget-icon">🌱</div>
     </div>
   </div>
-  <button class="btn btn-secondary btn-block" id="logoutBtn" style="width: 100%; justify-content: center;">
-    Cerrar Sesión
-  </button>
-</div>
-</aside>
 
-<!-- Main Content -->
-<main class="main-content">
-  <div class="page-header">
-    <h2 class="page-title" id="pageTitle">Mercado</h2>
-    <p class="page-subtitle" id="pageSubtitle">Explora los mejores productos locales</p>
-  </div>
-
-  <!-- Premium Navigation Tabs -->
-  <div class="nav-tabs-container">
-    <button class="nav-tab active" data-tab="marketplace" id="tabMarketplace">
-      <span class="tab-icon">🏪</span>
-      <span class="tab-label">Mercado</span>
-    </button>
-    <button class="nav-tab" data-tab="cart" id="tabCart">
-      <span class="tab-icon">🛒</span>
-      <span class="tab-label">Carrito <span id="navCartBadge" class="badge-count" style="display: none;">0</span></span>
-    </button>
-    <button class="nav-tab" data-tab="orders" id="tabOrders">
-      <span class="tab-icon">📦</span>
-      <span class="tab-label">Mis Pedidos</span>
-    </button>
-    <button class="nav-tab" data-tab="products" id="tabProducts" style="display: none;">
-      <span class="tab-icon">🥕</span>
-      <span class="tab-label">Mis Productos</span>
-    </button>
-    <button class="nav-tab" data-tab="publish" id="tabPublish" style="display: none;">
-      <span class="tab-icon">➕</span>
-      <span class="tab-label">Publicar</span>
-    </button>
-    <button class="nav-tab" data-tab="incoming" id="tabIncoming" style="display: none;">
-      <span class="tab-icon">📥</span>
-      <span class="tab-label">Pedidos Entrantes</span>
+  <div class="sidebar-footer">
+    <div class="user-profile">
+      <div class="user-avatar" id="userAvatar">U</div>
+      <div class="user-info">
+        <h4 id="userName">Usuario</h4>
+        <span id="userRole">Rol</span>
+      </div>
+    </div>
+    <button class="btn btn-secondary btn-block" id="logoutBtn" style="width: 100%; justify-content: center;">
+      Cerrar Sesión
     </button>
   </div>
+  </aside>
 
-  <div id="dashboardContent">
-    <!-- Dynamic Content -->
-  </div>
-</main>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="page-header">
+      <h2 class="page-title" id="pageTitle">Mercado</h2>
+      <p class="page-subtitle" id="pageSubtitle">Explora los mejores productos locales</p>
+    </div>
 
-<!-- Mobile Bottom Nav -->
-<nav class="mobile-nav" id="mobileNav">
-  <a href="#" class="mobile-nav-item active" data-tab="marketplace">
-    <span class="mobile-nav-icon">🏪</span>
-    <span>Mercado</span>
-  </a>
-  <a href="#" class="mobile-nav-item" data-tab="cart">
-    <span class="mobile-nav-icon">🛒</span>
-    <span>Carrito</span>
-    <span id="mobileCartBadge" class="mobile-badge" style="display: none;">0</span>
-  </a>
-  <a href="#" class="mobile-nav-item" data-tab="orders">
-    <span class="mobile-nav-icon">📦</span>
-    <span>Pedidos</span>
-  </a>
-  <a href="#" class="mobile-nav-item" id="mobileLogout">
-    <span class="mobile-nav-icon">🚪</span>
-    <span>Salir</span>
-  </a>
-</nav>
+    <!-- Premium Navigation Tabs -->
+    <div class="nav-tabs-container">
+      <button class="nav-tab active" data-tab="marketplace" id="tabMarketplace">
+        <span class="tab-icon">🏪</span>
+        <span class="tab-label">Mercado</span>
+      </button>
+      <button class="nav-tab" data-tab="cart" id="tabCart">
+        <span class="tab-icon">🛒</span>
+        <span class="tab-label">Carrito <span id="navCartBadge" class="badge-count"
+            style="display: none;">0</span></span>
+      </button>
+      <button class="nav-tab" data-tab="orders" id="tabOrders">
+        <span class="tab-icon">📦</span>
+        <span class="tab-label">Mis Pedidos</span>
+      </button>
+      <button class="nav-tab" data-tab="products" id="tabProducts" style="display: none;">
+        <span class="tab-icon">🥕</span>
+        <span class="tab-label">Mis Productos</span>
+      </button>
+      <button class="nav-tab" data-tab="publish" id="tabPublish" style="display: none;">
+        <span class="tab-icon">➕</span>
+        <span class="tab-label">Publicar</span>
+      </button>
+      <button class="nav-tab" data-tab="incoming" id="tabIncoming" style="display: none;">
+        <span class="tab-icon">📥</span>
+        <span class="tab-label">Pedidos Entrantes</span>
+      </button>
+    </div>
+
+    <div id="dashboardContent">
+      <!-- Dynamic Content -->
+    </div>
+  </main>
+
+  <!-- Mobile Bottom Nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#" class="mobile-nav-item active" data-tab="marketplace">
+      <span class="mobile-nav-icon">🏪</span>
+      <span>Mercado</span>
+    </a>
+    <a href="#" class="mobile-nav-item" data-tab="cart">
+      <span class="mobile-nav-icon">🛒</span>
+      <span>Carrito</span>
+      <span id="mobileCartBadge" class="mobile-badge" style="display: none;">0</span>
+    </a>
+    <a href="#" class="mobile-nav-item" data-tab="orders">
+      <span class="mobile-nav-icon">📦</span>
+      <span>Pedidos</span>
+    </a>
+    <a href="#" class="mobile-nav-item" id="mobileLogout">
+      <span class="mobile-nav-icon">🚪</span>
+      <span>Salir</span>
+    </a>
+  </nav>
 </div>
 
 <script type="module" src="../js/pages/dashboard.js"></script>
